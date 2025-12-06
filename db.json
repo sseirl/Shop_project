@@ -1,0 +1,26 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "Laptop",
+      "price": 999,
+      "image": "https://via.placeholder.com/150",
+      "description": "Fast and powerful laptop"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@gmail.com",
+      "password": "1234",
+      "role": "admin"
+    },
+    {
+      "id": "d884",
+      "email": "aidarbekovnaainuru@gmail.com",
+      "password": "ainuha27",
+      "role": "customer"
+    }
+  ],
+  "orders": []
+}
