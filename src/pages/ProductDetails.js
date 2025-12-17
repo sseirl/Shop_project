@@ -1,34 +1,48 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import "../styles/productDetails.css";
+import { useCart } from "../context/CartContext";
 
-export default function ProductDetails() {
+const ProductDetails = () => {
   const { id } = useParams();
-  const [p, setP] = useState(null);
+  const [product, setProduct] = useState(null);
+
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/products/${id}`).then(res => {
-      setP(res.data);
+    axios.get(`http://localhost:4000/products/${id}`).then((res) => {
+      setProduct(res.data);
     });
   }, [id]);
 
-  if (!p) return "Loading...";
+  if (!product) return <div className="loading">Loading...</div>;
 
   return (
-    <div>
-      <h2>{p.title}</h2>
-      <p>{p.description}</p>
-      <p>${p.price}</p>
+    <div className="product-details-container">
+      <div className="product-image-wrapper">
+        <img src={product.image} alt={product.title} className="product-image" />
+      </div>
 
-      <button onClick={() => {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push(p);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        alert("Added to cart!");
-      }}>
-        Add to Cart
-      </button>
+      <div className="product-info">
+        <h1 className="pd-title">{product.title}</h1>
+        <p className="pd-category">{product.category}</p>
+        <p className="pd-price">${product.price}</p>
+        <p className="pd-description">{product.description}</p>
+
+        <div className="pd-buttons">
+          <button className="btn-buy">Buy Now</button>
+
+          <button
+            className="btn-add"
+            onClick={() => addToCart(product)}
+          >
+            🛒 Add to Cart
+          </button>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
+export default ProductDetails;

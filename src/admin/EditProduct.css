@@ -1,0 +1,59 @@
+.edit-product-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.edit-card {
+  background: #fff;
+  padding: 30px;
+  width: 450px;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.edit-card h2 {
+  text-align: center;
+  color: #ff4d4d;
+  margin-bottom: 20px;
+}
+
+.edit-card label {
+  font-weight: 600;
+  margin-top: 12px;
+  display: block;
+  color: #333;
+}
+
+.edit-card input,
+.edit-card textarea,
+.edit-card select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.edit-card textarea {
+  height: 80px;
+  resize: none;
+}
+
+.save-btn {
+  width: 100%;
+  background: #ff4d4d;
+  color: white;
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.save-btn:hover {
+  background: #cc0000;
+}

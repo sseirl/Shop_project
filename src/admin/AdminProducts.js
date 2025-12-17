@@ -1,30 +1,57 @@
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./AdminProducts.css";
 
-export default function AdminProducts() {
+const AdminProducts = () => {
   const [products, setProducts] = useState([]);
 
+  const fetchProducts = async () => {
+    const res = await axios.get("http://localhost:4000/products");
+    setProducts(res.data);
+  };
+
   useEffect(() => {
-    axios.get("http://localhost:4000/products").then(res => {
-      setProducts(res.data);
-    });
+    fetchProducts();
   }, []);
 
-  const deleteProduct = (id) => {
-    axios.delete(`http://localhost:4000/products/${id}`).then(() => {
-      setProducts(products.filter(p => p.id !== id));
-    });
+  const deleteProduct = async (id) => {
+    await axios.delete(`http://localhost:4000/products/${id}`);
+    fetchProducts();
   };
 
   return (
-    <div>
-      <h2>Manage Products</h2>
-      {products.map(p => (
-        <div key={p.id}>
-          {p.title} - ${p.price}
-          <button onClick={() => deleteProduct(p.id)}>Delete</button>
-        </div>
-      ))}
+    <div className="admin-products">
+      <div className="admin-header">
+        <h2>Admin Product Panel</h2>
+        <Link to="/admin/add-product" className="admin-add-btn">+ Add Product</Link>
+      </div>
+
+      <div className="admin-grid">
+        {products.map((p) => (
+          <div className="admin-card" key={p.id}>
+            <img src={p.image} alt={p.title} />
+
+            <h3>{p.title}</h3>
+            <p className="price">${p.price}</p>
+
+            <div className="admin-actions">
+              <Link to={`/admin/edit-product/${p.id}`} className="edit-btn">
+                Edit
+              </Link>
+
+              <button 
+                className="delete-btn"
+                onClick={() => deleteProduct(p.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default AdminProducts;

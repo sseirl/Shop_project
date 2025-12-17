@@ -3,16 +3,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 
-
 const Register = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  // Функция проверки пароля
   const validatePassword = (pass) => {
-    const hasNumber = /\d/; // есть ли цифра
+    const hasNumber = /\d/;
     return pass.length >= 8 && hasNumber.test(pass);
   };
 
@@ -20,59 +18,63 @@ const Register = () => {
     e.preventDefault();
 
     if (!validatePassword(password)) {
-      setError("Пароль должен быть минимум 8 символов и содержать хотя бы одну цифру.");
+      setError("Password must be at least 8 characters and contain a number");
       return;
     }
 
     try {
-      const users = await axios.get("http://localhost:4000/users");
+      // Проверяем, есть ли такой email
+      const checkUser = await axios.get(
+        `http://localhost:4000/users?email=${email}`
+      );
 
-      const userExists = users.data.find((u) => u.email === email);
-      if (userExists) {
-        setError("Пользователь с такой почтой уже существует!");
+      if (checkUser.data.length > 0) {
+        setError("Email already registered");
         return;
       }
 
-      await axios.post("http://localhost:4000/users", {
+      // Создаем нового юзера с ID
+      const newUser = {
+        id: Date.now().toString(),
         email,
         password,
-        role: "customer"
-      });
+        role: "customer",
+      };
 
-      alert("Вы успешно зарегистрировались!");
-      navigate("/login");
+      await axios.post("http://localhost:4000/users", newUser);
 
-    } catch (error) {
-      console.log(error);
-      setError("Ошибка при регистрации. Попробуйте снова.");
+
+      localStorage.setItem("user", JSON.stringify(newUser));
+      navigate("/products");
+    } catch (err) {
+      setError("Server error");
     }
   };
 
   return (
     <div className="auth-container">
-      <h2>Регистрация</h2>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      <form onSubmit={handleRegister}>
+      <form className="auth-card" onSubmit={handleRegister}>
+        <h2>Create Account</h2>
 
         <input
           type="email"
-          placeholder="Введите почту"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
           required
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
-          placeholder="Введите пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password (8+ chars, 1 number)"
           required
+          onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Создать аккаунт</button>
+        <button type="submit" className="auth-btn">
+          Register
+        </button>
+
+        {error && <p className="auth-error">{error}</p>}
       </form>
     </div>
   );

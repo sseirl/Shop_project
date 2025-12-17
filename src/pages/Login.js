@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/auth.css";
 
 const Login = () => {
@@ -18,14 +18,14 @@ const Login = () => {
       );
 
       if (res.data.length === 0) {
-        setError("Такого пользователя не существует!");
+        setError("User not found");
         return;
       }
 
       const user = res.data[0];
 
       if (user.password !== password) {
-        setError("Неверный пароль!");
+        setError("Wrong password");
         return;
       }
 
@@ -40,27 +40,32 @@ const Login = () => {
 
   return (
     <div className="auth-container">
-      <form className="auth-form" onSubmit={handleLogin}>
+      <form className="auth-card" onSubmit={handleLogin}>
         
-        <h2>Войти</h2>
+        <h2>Login</h2>
 
         <input
           type="email"
-          placeholder="Ведите почту"
+          placeholder="Email"
           required
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
-          placeholder="Пароль"
+          placeholder="Password"
           required
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Войти</button>
+        <button type="submit" className="auth-btn">Login</button>
 
-        {error && <p className="error">{error}</p>}
+        <p className="switch-auth">
+          Don't have an account?
+          <Link to="/Register"> Register</Link>
+        </p>
+
+        {error && <p className="auth-error">{error}</p>}
       </form>
     </div>
   );

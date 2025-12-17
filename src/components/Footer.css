@@ -1,0 +1,35 @@
+.main-footer {
+  background: #e60023;
+  padding: 35px 0;
+  margin-top: 50px;
+  color: white;
+}
+
+.footer-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.copy {
+  margin: 10px 0;
+  opacity: 0.8;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.footer-links a:hover {
+  opacity: 0.7;
+}

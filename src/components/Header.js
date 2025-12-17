@@ -1,37 +1,33 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
-const Header = () => {
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  const logout = () => {
-    localStorage.removeItem("user");
-    navigate("/login");
-  };
-
+export default function Header() {
   return (
-    <nav style={{ display: "flex", gap: "20px", padding: "10px" }}>
-      {user?.role === "admin" && (
-        <Link to="/admin/products">Admin Panel</Link>
-      )}
+    <header className="main-header">
+      <div className="header-container">
 
-      {user?.role === "customer" && (
-        <>
+        <div className="logo">
+          <Link to="/products">RED•SHOP</Link>
+        </div>
+
+        <nav className="nav-links">
           <Link to="/products">Products</Link>
-        </>
-      )}
+          <Link to="/about">About</Link>
+          <Link to="/support">Support</Link>
+        </nav>
 
-      {!user && (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </>
-      )}
+       <Link to="/cart" className="header-cart-btn">
+  🛒 Cart
+</Link>
 
-      {user && <button onClick={logout}>Logout</button>}
-    </nav>
+
+        <div className="auth-buttons">
+          <Link className="btn-login" to="/login">Login</Link>
+          <Link className="btn-register" to="/register">Register</Link>
+        </div>
+
+      </div>
+    </header>
   );
-};
-
-export default Header;
+}
