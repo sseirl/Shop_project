@@ -53,6 +53,15 @@ src/
  ├── pages/        # User pages
  ├── routes/       # Protected routes
  └── App.js
+
+🔑 Логины для тестирования
+👤 Покупатель
+email: admin@gmail.com
+password: admin123
+👑 Администратор
+email: test@gmail.com
+password: test1234
+ 
 ❤️ About the project
 We wanted to create something simple but still useful.
 RedShop shows basic e‑commerce logic: product list, cart, admin panel and protection for routes.
