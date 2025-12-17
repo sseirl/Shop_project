@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+🛍️ RedShop – React Project
+This is a small online shop project built with React.
+Our goal was to create a simple, clean and user‑friendly e‑commerce website where users can browse products, check details, add items to the cart and manage them.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created by:
+Abilmukanova Ainuru, Jumalieva Samara, Sultanova Nurjanat
 
-## Available Scripts
+⭐ What you can do in the app
+View all products
 
-In the project directory, you can run:
+Search and filter products by category
 
-### `npm start`
+Open a product page and see full details
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Add and remove items from the shopping cart
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Floating mini‑cart (always visible)
 
-### `npm test`
+Login / Register pages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Admin panel (add, edit and delete products)
 
-### `npm run build`
+Protected routes for customers and admins
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🧰 Technologies we used
+React
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+React Router
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Axios
 
-### `npm run eject`
+JSON Server (fake backend)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Context API (for cart management)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+CSS (custom styling)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+🚀 How to start the project
+1. Install packages
+npm install
+2. Start React project
+npm start
+3. Start JSON Server
+npx json-server --watch db.json --port 4000
+Now open the browser at:
+👉 http://localhost:3000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📂 Project structure (short version)
+src/
+ ├── admin/        # Admin pages
+ ├── components/   # UI components
+ ├── context/      # Cart context
+ ├── pages/        # User pages
+ ├── routes/       # Protected routes
+ └── App.js
+❤️ About the project
+We wanted to create something simple but still useful.
+RedShop shows basic e‑commerce logic: product list, cart, admin panel and protection for routes.
+This project helped us practice React, routing, context, and working with a fake backend.
